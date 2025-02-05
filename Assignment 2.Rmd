@@ -1,0 +1,105 @@
+---
+title: "Assignment 2"
+author: "Sadé Miller"
+date: "2/5/2025"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+ 
+
+1.  **What is the second argument in the `lm()` function?**
+
+    *`? lm()`*
+
+    *The second argument in the `lm()` function is data, which is defined as an optional data frame, list, or environment containing the variables in the model.*
+
+2.  **What is the second argument in the `plot.gam()` function, found in the `mgcv` library?**
+
+    *`library (mgcv)`*
+
+    *`? plot.gam()`*
+
+    *The second argument in the `plot.gam()`function is residuals. If true, partial residuals are added to plots of 1-D smooths. If false, no residuals are added.*
+
+3.  **What is the length of the vector created from a sequence of 3 to 27 by intervals of 0.13?**
+
+    ```{r}
+    seq(3, 27, by = 0.13)
+
+    ```
+
+    *The length of the vector is 185.*
+
+4.  **What code subsets the first row and third column of the second matrix for the array `array(seq(1:20), dim=c(2,5,2))`, and what number occupies that position?**
+
+    *The code that subsets the first row, third column of the second matrix is:*
+
+    ```{r}
+    T <- array(seq(1:20), dim=c(2,5,2))
+    ```
+
+    ```{r}
+    T[1,3,2]
+    ```
+
+    *The value that occupies that position is 15.*
+
+5.  **Create a list object from 3 or more built in [datasets](https://vincentarelbundock.github.io/Rdatasets/datasets.html){.uri}.**
+
+`X <- data("NaturalGas", "CigarettesB", "ShipAccidents")`
+
+`TestList <- list(CigarettesB, NaturalGas, ShipAccidents) View(TestList)`
+
+6.  **What is the mean length of major North American Rivers?**
+
+```{r}
+mean(rivers)
+```
+*The mean length of major North American Rivers is about 591 miles.* 
+
+7.  **Write a built-in dataset to a CSV file (show code) and open it in Excel.**
+
+`write.csv(mtcars, file= '/Users/sadem/Desktop/mtcars.csv')`
+
+8.  **Tabulate the type and concentration factors in the CO2 dataset in one table. Is this experiment balanced?**
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+CO2 %>% select(Type,conc)
+```
+```{r, message=FALSE}
+library(nlme)
+isBalanced(CO2) 
+```
+*Yes, this experiment is balanced.*
+
+9.  **Write a single function to subset both spray A and records of counts \> 17 from InsectSprays. How many records are there?**
+
+```{r}
+filter(InsectSprays, spray == "A", count > 17)
+```
+
+*There are 3 records that result from this function.*
+
+
+10. **In 2005, what was the 5th city in TX for home sales?**
+
+```{r, message=FALSE}
+txhousing %>% filter(year == 2005) %>%
+group_by(city,year) %>%
+summarise(sum_sales = sum(sales)) %>%
+arrange(desc(sum_sales))
+```
+
+*The 5th city in Texas for home sales in 2005 was Collin County.*
+
+
